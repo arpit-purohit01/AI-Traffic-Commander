@@ -1,0 +1,1 @@
+{"features": ["event_cause", "priority", "requires_road_closure", "zone", "hour_of_day", "day_of_week", "month", "is_weekend", "quarter"], "categorical": ["event_cause", "priority", "zone"], "numeric": ["requires_road_closure", "hour_of_day", "day_of_week", "month", "is_weekend", "quarter"], "conformal_score": 102.30497074369285}

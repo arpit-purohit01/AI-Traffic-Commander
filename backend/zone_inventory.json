@@ -1,0 +1,22 @@
+{
+  "Central Zone 1": {
+    "officers": 80,
+    "barricades": 40,
+    "tow_trucks": 5
+  },
+  "Central Zone 2": {
+    "officers": 120,
+    "barricades": 80,
+    "tow_trucks": 15
+  },
+  "Outer Zone": {
+    "officers": 30,
+    "barricades": 20,
+    "tow_trucks": 2
+  },
+  "Unknown": {
+    "officers": 50,
+    "barricades": 30,
+    "tow_trucks": 5
+  }
+}
