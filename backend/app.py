@@ -19,6 +19,8 @@ from slowapi.errors import RateLimitExceeded
 
 limiter = Limiter(key_func=get_remote_address)
 
+
+
 # --- Database Setup ---
 try:
     engine = create_engine("postgresql://postgres:postgres@localhost/gridlock")
@@ -45,6 +47,17 @@ app = FastAPI()
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
+
+
+
+@app.get("/")
+def root():
+    return {
+        "status": "online",
+        "service": "AI Traffic Commander",
+        "message": "Backend is running successfully"
+    }
+
 
 @app.post("/login")
 @limiter.limit("5/minute")
