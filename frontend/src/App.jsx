@@ -31,14 +31,17 @@ function App() {
   const [health, setHealth] = useState({ model: 'XGBoost', mae: 0, drift_detected: false });
   const [globalImportances, setGlobalImportances] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const API_URL =
+  import.meta.env.VITE_API_URL ||
+  "http://localhost:8000";
+  
   useEffect(() => {
-    fetch('http://localhost:8000/model-health')
+fetch(`${API_URL}/model-health`)
       .then(res => res.json())
       .then(data => setHealth(data))
       .catch(err => console.error(err));
       
-    fetch('http://localhost:8000/feature-importance')
+    fetch(`${API_URL}/feature-importance`)
       .then(res => res.json())
       .then(data => setGlobalImportances(data.slice(0, 5)))
       .catch(err => console.error(err));
@@ -61,7 +64,7 @@ function App() {
 
   const fetchForecast = async () => {
     try {
-      const response = await fetch('http://localhost:8000/what-if', {
+      const response = await fetch(`${API_URL}/what-if`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, hour_of_day: parseInt(formData.hour_of_day), day_of_week: parseInt(formData.day_of_week) })
@@ -74,7 +77,7 @@ function App() {
     if (e) e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/generate-plan', {
+      const response = await fetch(`${API_URL}/generate-plan`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...formData, hour_of_day: parseInt(formData.hour_of_day), day_of_week: parseInt(formData.day_of_week) })
