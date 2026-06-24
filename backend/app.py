@@ -64,6 +64,12 @@ def root():
 def mock_jwt_login(request: Request):
     return {"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.dummy", "token_type": "bearer"}
 
+
+@app.get("/ping")
+def ping():
+    return {"status": "ok"}
+
+
 # --- Load Artifacts ---
 def load_json(path):
     try:
